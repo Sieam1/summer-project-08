@@ -1,87 +1,106 @@
+"use client"; 
+
+import React from 'react';
 import products from "@/data/products.json";
-import Link from "next/link";
+import { useRouter } from "next/navigation"; 
 
+export default function ProductDetails({ params }) {
+  const router = useRouter(); 
+  const { id } = React.use(params); 
 
-export default async function ProductDetails({ params }) {
-  
-  
-  const { id } = await params;
-
-  
   const product = products.find(
     (p) => String(p.id).trim() === String(id).trim()
   );
 
- 
   if (!product) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-white" data-theme="light">
-        <h1 className="text-6xl font-bold text-orange-500">404</h1>
-        <p className="text-xl font-semibold mt-4">Oops! Product Not Found</p>
-        <p className="text-gray-500 mb-6">We couldn't find any product with ID: {id}</p>
-        <Link href="/" className="btn btn-primary bg-slate-900 border-none rounded-full px-10">
-          Back to Home
-        </Link>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-white p-6 text-center">
+        <h1 className="text-6xl font-black text-orange-500">404</h1>
+        <p className="text-xl font-bold mt-4">Product Not Found</p>
+        <button 
+          onClick={() => router.back()} 
+          className="btn bg-slate-900 text-white rounded-full px-8 mt-6 border-none"
+        >
+          Back to Store
+        </button>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 py-12" data-theme="light">
-      <div className="max-w-6xl mx-auto px-4">
+    <div className="min-h-[90vh] bg-slate-50 py-6 md:py-10" data-theme="light">
+      <div className="max-w-5xl mx-auto px-4">
         
-        {/* Navigation */}
-        <div className="mb-6">
-           <Link href="/" className="text-orange-600 hover:underline font-medium">← Back to Store</Link>
+        {/* Navigation - Top Bar style */}
+        <div className="flex items-center mb-4">
+           <button 
+            onClick={() => router.back()} 
+            className="group flex items-center gap-2 text-slate-500 hover:text-orange-600 font-bold text-sm transition-all bg-white px-4 py-2 rounded-full shadow-sm border border-slate-100"
+           >
+             <span className="group-hover:-translate-x-1 transition-transform">←</span> Back to Store
+           </button>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-lg overflow-hidden grid grid-cols-1 md:grid-cols-2">
-          {/* Product Image */}
-          <div className="p-8 bg-gray-100 flex items-center justify-center">
-            <img
-              src={product.image}
-              alt={product.name}
-              className="rounded-xl shadow-md max-h-[400px] w-full object-cover"
-            />
+        <div className="bg-white rounded-3xl shadow-xl overflow-hidden grid grid-cols-1 md:grid-cols-2 border border-slate-100">
+          
+          {/* Product Image - Reduced Size */}
+          <div className="relative p-6 bg-slate-50 flex items-center justify-center">
+            <div className="relative w-full aspect-square max-h-[350px] md:max-h-[400px]">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-full object-contain rounded-2xl drop-shadow-2xl"
+                />
+            </div>
+            {/* Minimalist Floating Badge */}
+            <div className="absolute top-4 right-4 bg-white/80 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-black text-slate-900 border border-white shadow-sm">
+               NEW SEASON
+            </div>
           </div>
 
-          {/* Product Info */}
-          <div className="p-8 md:p-12 flex flex-col justify-center">
-            <div className="badge badge-outline mb-2">{product.brand || "Summer Essential"}</div>
-            <h1 className="text-4xl font-bold text-slate-800 mb-4">{product.name}</h1>
-            
-            <div className="flex items-center gap-2 mb-6">
-               <div className="rating rating-sm">
-                  {[...Array(5)].map((_, i) => (
-                    <input 
-                      key={i} 
-                      type="radio" 
-                      className={`mask mask-star-2 ${i < Math.floor(product.rating) ? 'bg-yellow-400' : 'bg-gray-300'}`} 
-                      disabled 
-                    />
-                  ))}
-               </div>
-               <span className="text-gray-600 font-bold">({product.rating})</span>
+          {/* Product Info - More Compact */}
+          <div className="p-6 md:p-10 flex flex-col justify-center bg-white">
+            <div className="flex items-center gap-2 mb-3">
+                <span className="text-[10px] font-black text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded uppercase tracking-tighter">
+                    {product.brand || "Premium"}
+                </span>
+                <div className="flex items-center text-yellow-400 text-xs">
+                    ★ <span className="text-slate-900 ml-1 font-bold">{product.rating}</span>
+                </div>
             </div>
 
-            <p className="text-3xl font-black text-orange-600 mb-6">${product.price}</p>
+            <h1 className="text-3xl md:text-4xl font-black text-slate-900 mb-3 leading-tight uppercase tracking-tighter">
+                {product.name}
+            </h1>
             
-            <p className="text-gray-600 mb-8 leading-relaxed">
+            <p className="text-3xl font-black text-orange-600 mb-4 tracking-tight">
+                ${product.price}
+            </p>
+            
+            <p className="text-slate-500 mb-6 leading-relaxed text-sm md:text-base font-medium line-clamp-4 md:line-clamp-none">
               {product.description}
             </p>
 
-            <div className="flex gap-4">
-              <button className="btn btn-primary flex-1 bg-slate-900 border-none hover:bg-orange-600 h-14 rounded-xl text-white">
-                Add to Cart
-              </button>
-              <button className="btn btn-outline h-14 rounded-xl border-gray-300 text-xl">
-                ❤
-              </button>
+            <div className="flex items-center gap-3 mb-6">
+                <button className="flex-[3] bg-slate-900 text-white font-bold h-12 md:h-14 rounded-2xl hover:bg-orange-600 transition-all active:scale-95 shadow-lg shadow-slate-900/10 uppercase text-xs tracking-widest">
+                    Add to Cart
+                </button>
+                <button className="flex-1 border border-slate-200 h-12 md:h-14 rounded-2xl hover:bg-slate-50 transition-all flex items-center justify-center text-xl active:scale-90">
+                    ❤
+                </button>
             </div>
             
-            <div className="mt-6 pt-6 border-t border-gray-100 flex justify-between text-sm">
-                <span className="text-gray-500">Category: <b className="text-slate-700">{product.category}</b></span>
-                <span className="text-gray-500">Stock: <b className={product.stock > 0 ? "text-green-600" : "text-red-600"}>{product.stock} pcs</b></span>
+            <div className="pt-5 border-t border-slate-50 grid grid-cols-2 gap-4">
+                <div className="flex flex-col">
+                    <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Category</span>
+                    <span className="text-xs font-bold text-slate-800">{product.category}</span>
+                </div>
+                <div className="flex flex-col">
+                    <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Availability</span>
+                    <span className={`text-xs font-bold ${product.stock > 0 ? "text-emerald-600" : "text-red-600"}`}>
+                        {product.stock > 0 ? `${product.stock} In Stock` : 'Out of Stock'}
+                    </span>
+                </div>
             </div>
           </div>
         </div>

@@ -1,96 +1,96 @@
-import {
-  FaTint,
-  FaSun,
-  FaTshirt,
-  FaAppleAlt,
-  FaBed,
-  FaBath,
-} from "react-icons/fa";
+"use client";
+import React from 'react';
 
 export default function SummerTips() {
   const tips = [
     {
-      icon: <FaTint size={42} />,
+      id: 1,
       title: "Stay Hydrated",
-      desc: "Drink enough water daily to stay fresh and energized.",
-      color: "from-cyan-400 to-blue-500",
+      desc: "Drink 3-4 liters of water daily to maintain energy levels and stay fresh.",
+      image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&auto=format&fit=crop&q=80",
+      badge: "Healthy Life"
     },
     {
-      icon: <FaSun size={42} />,
-      title: "Use Sunscreen",
-      desc: "Protect your skin from harmful sunlight before going outside.",
-      color: "from-yellow-400 to-orange-500",
+      id: 2,
+      title: "Skin Protection",
+      desc: "Apply SPF 50+ sunscreen before stepping out to avoid harmful UV rays.",
+      image: "https://images.unsplash.com/photo-1520333789090-1afc82db536a?w=600&auto=format&fit=crop&q=80",
+      badge: "Skin Care"
     },
     {
-      icon: <FaTshirt size={42} />,
-      title: "Light Clothing",
-      desc: "Wear breathable cotton clothes for extra comfort.",
-      color: "from-pink-400 to-purple-500",
+      id: 3,
+      title: "Fresh Fruits",
+      desc: "Eat water-rich fruits like watermelon and pineapple to cool your body.",
+      image: "https://images.unsplash.com/photo-1490818387583-1baba5e638af?w=600&auto=format&fit=crop&q=80",
+      badge: "Nutrition"
     },
     {
-      icon: <FaAppleAlt size={42} />,
-      title: "Eat Fresh Fruits",
-      desc: "Enjoy seasonal fruits to stay cool and healthy.",
-      color: "from-green-400 to-emerald-500",
-    },
-    {
-      icon: <FaBed size={42} />,
-      title: "Proper Rest",
-      desc: "Take enough sleep and avoid overworking in heat.",
-      color: "from-indigo-400 to-blue-600",
-    },
-    {
-      icon: <FaBath size={42} />,
-      title: "Cool Shower",
-      desc: "Refresh your body with cool showers on hot days.",
-      color: "from-sky-400 to-cyan-500",
-    },
+      id: 4,
+      title: "Proper Sleep",
+      desc: "Get quality rest in a cool environment to recover from summer fatigue.",
+      image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=600&auto=format&fit=crop&q=80",
+      badge: "Self Care"
+    }
   ];
 
   return (
-    <section className="max-w-7xl mx-auto px-4 pb-20 pt-10">
-      {/* Heading */}
-      <div className="text-center mb-14">
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-800">
-          🌞 Summer Care Tips
-        </h2>
-        <p className="text-gray-500 mt-3 text-lg">
-          Smart habits to stay cool, fresh, and healthy this summer
-        </p>
-      </div>
+    <section className="bg-white py-20">
+      <div className="max-w-7xl mx-auto px-6">
+        
+        {/* Header Section */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter uppercase mb-4">
+             Summer <span className="text-emerald-500">Wellness</span> Tips
+          </h2>
+          <p className="text-gray-500 max-w-2xl mx-auto text-lg italic">
+            Essential habits to stay vibrant and healthy during the sunny season.
+          </p>
+        </div>
 
-      {/* Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-        {tips.map((tip, i) => (
-          <div
-            key={i}
-            className="bg-white rounded-3xl p-8 shadow-md hover:shadow-2xl hover:-translate-y-2 duration-300 text-center border border-gray-100 min-h-[340px] flex flex-col justify-between"
-          >
-            <div>
-              {/* Icon */}
-              <div
-                className={`w-20 h-20 mx-auto rounded-full flex items-center justify-center text-white bg-gradient-to-r ${tip.color} shadow-lg`}
-              >
-                {tip.icon}
+        {/* Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {tips.map((tip) => (
+            <div 
+              key={tip.id} 
+              className="group relative h-[400px] w-full rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500"
+            >
+              {/* Background Image */}
+              <img 
+                src={tip.image} 
+                alt={tip.title} 
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              />
+              
+              {/* Overlays */}
+              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors duration-500"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+
+              {/* Content Overlay */}
+              <div className="absolute inset-0 p-8 flex flex-col justify-end text-white">
+                {/* Badge */}
+                <div className="mb-4">
+                  <span className="bg-emerald-500/80 backdrop-blur-sm text-white text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full">
+                    {tip.badge}
+                  </span>
+                </div>
+
+                {/* Title */}
+                <h3 className="text-2xl font-bold mb-2 transform group-hover:-translate-y-2 transition-transform duration-300">
+                  {tip.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-sm text-gray-200 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 leading-relaxed">
+                  {tip.desc}
+                </p>
+
+                {/* Bottom Line Decor */}
+                <div className="mt-4 h-1 w-12 bg-emerald-400 rounded-full group-hover:w-full transition-all duration-700"></div>
               </div>
-
-              {/* Title */}
-              <h3 className="mt-6 text-2xl font-bold text-gray-800">
-                {tip.title}
-              </h3>
-
-              {/* Description */}
-              <p className="text-sm text-gray-500 mt-3 leading-relaxed px-2">
-                {tip.desc}
-              </p>
             </div>
+          ))}
+        </div>
 
-            {/* Button */}
-            <button className="mt-6 btn btn-success text-white rounded-full px-8">
-              Learn More
-            </button>
-          </div>
-        ))}
       </div>
     </section>
   );

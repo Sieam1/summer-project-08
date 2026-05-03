@@ -29,7 +29,7 @@
     "rating": 4.7,
     "stock": 20,
     "description": "Wide-brim straw hat that adds style while protecting from sunlight.",
-    "image": "https://images.unsplash.com/photo-1759148414223-b9cdd4e17c82?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Q2xhc3NpYyUyMFN0cmF3JTIwSGF0fGVufDB8fDB8fHww",
+    "image": "https://images.unsplash.com/photo-1759148414223-b9cdd4e17c82?w=600&auto=format&fit=crop&q=60",
     "category": "Accessories"
   },
   {
@@ -84,7 +84,51 @@
     "rating": 4.8,
     "stock": 11,
     "description": "Premium open sandals with soft sole and leather straps for everyday comfort.",
-    "image": "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=600&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1655588690839-93620653b67c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjB8fExlYXRoZXIlMjBTdHJhcCUyMFNhbmRhbHN8ZW58MHx8MHx8fDA%3D",
+    "category": "Footwear"
+  },
+  {
+    "id": "9",
+    "name": "Summer Beach Tote Bag",
+    "brand": "OceanCarry",
+    "price": 28,
+    "rating": 4.7,
+    "stock": 17,
+    "description": "Spacious woven tote bag perfect for beach essentials and summer shopping.",
+    "image": "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&auto=format&fit=crop",
+    "category": "Accessories"
+  },
+  {
+    "id": "10",
+    "name": "Casual Polo T-Shirt",
+    "brand": "FreshFit",
+    "price": 27,
+    "rating": 4.5,
+    "stock": 19,
+    "description": "Soft cotton polo t-shirt with breathable fabric for everyday summer wear.",
+    "image": "https://images.unsplash.com/photo-1714317437452-e36880e5f385?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OTZ8fENhc3VhbCUyMFBvbG8lMjBULVNoaXJ0fGVufDB8fDB8fHww",
+    "category": "Men"
+  },
+  {
+    "id": "11",
+    "name": "Printed Summer Skirt",
+    "brand": "BloomStyle",
+    "price": 30,
+    "rating": 4.8,
+    "stock": 13,
+    "description": "Light and stylish printed skirt designed for sunny outdoor occasions.",
+    "image": "https://images.unsplash.com/photo-1688589564789-ffe9636497db?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8UHJpbnRlZCUyMFN1bW1lciUyMFNraXJ0fGVufDB8fDB8fHww",
+    "category": "Women"
+  },
+  {
+    "id": "12",
+    "name": "Sport Slide Slippers",
+    "brand": "EasyWalk",
+    "price": 24,
+    "rating": 4.6,
+    "stock": 21,
+    "description": "Comfortable slide slippers with cushioned sole for daily summer comfort.",
+    "image": "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=600&auto=format&fit=crop",
     "category": "Footwear"
   }
 ]

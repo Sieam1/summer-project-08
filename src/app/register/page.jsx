@@ -1,25 +1,30 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import { createAuthClient } from "better-auth/client";
+import { FcGoogle } from "react-icons/fc";
 
 const authClient = createAuthClient();
 
 export default function RegisterPage() {
   const router = useRouter();
+
   const [loading, setLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
 
   const handleRegister = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    const name = e.target.name.value;
-    const email = e.target.email.value;
-    const image = e.target.image.value;
-    const password = e.target.password.value;
+    const form = e.target;
+
+    const name = form.name.value;
+    const email = form.email.value;
+    const image = form.image.value;
+    const password = form.password.value;
 
     try {
       await authClient.signUp.email({
@@ -29,7 +34,7 @@ export default function RegisterPage() {
         image,
       });
 
-      toast.success("Registration Success");
+      toast.success("Registration Successful");
       router.push("/login");
     } catch (error) {
       toast.error("Registration Failed");
@@ -38,54 +43,89 @@ export default function RegisterPage() {
     setLoading(false);
   };
 
+  const handleGoogleRegister = async () => {
+    setGoogleLoading(true);
+
+    try {
+      await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "/",
+      });
+    } catch (error) {
+      toast.error("Google Login Failed");
+      setGoogleLoading(false);
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-[#fffaf5] flex items-center justify-center px-4">
+    <div className="min-h-screen bg-[#fffaf5] flex items-center justify-center px-4 py-6">
 
-      <div className="w-full max-w-md bg-white shadow-2xl rounded-2xl p-8">
+      <div className="w-full max-w-md bg-white shadow-2xl rounded-2xl p-6">
 
-        <h2 className="text-4xl font-bold text-center text-gray-800 mb-8">
+        {/* Title */}
+        <h2 className="text-3xl font-bold text-center text-gray-800 mb-5">
           Register
         </h2>
 
-        <form onSubmit={handleRegister} className="space-y-4">
+        {/* Form */}
+        <form onSubmit={handleRegister} className="space-y-3">
 
           <input
             name="name"
             type="text"
             placeholder="Full Name"
-            className="w-full px-4 py-3 border border-gray-300 rounded-xl bg-white text-black focus:outline-none focus:ring-2 focus:ring-orange-400"
+            required
+            className="w-full px-4 py-2.5 border border-gray-300 rounded-xl bg-white text-black focus:outline-none focus:ring-2 focus:ring-orange-400"
           />
 
           <input
             name="email"
             type="email"
             placeholder="Email Address"
-            className="w-full px-4 py-3 border border-gray-300 rounded-xl bg-white text-black focus:outline-none focus:ring-2 focus:ring-orange-400"
+            required
+            className="w-full px-4 py-2.5 border border-gray-300 rounded-xl bg-white text-black focus:outline-none focus:ring-2 focus:ring-orange-400"
           />
 
           <input
             name="image"
             type="text"
-            placeholder="Photo URL"
-            className="w-full px-4 py-3 border border-gray-300 rounded-xl bg-white text-black focus:outline-none focus:ring-2 focus:ring-orange-400"
+            placeholder="Photo URL (link)"
+            required
+            className="w-full px-4 py-2.5 border border-gray-300 rounded-xl bg-white text-black focus:outline-none focus:ring-2 focus:ring-orange-400"
           />
 
           <input
             name="password"
             type="password"
             placeholder="Password"
-            className="w-full px-4 py-3 border border-gray-300 rounded-xl bg-white text-black focus:outline-none focus:ring-2 focus:ring-orange-400"
+            required
+            className="w-full px-4 py-2.5 border border-gray-300 rounded-xl bg-white text-black focus:outline-none focus:ring-2 focus:ring-orange-400"
           />
 
           <button
-            className="w-full py-3 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-semibold transition"
+            type="submit"
+            className="w-full py-2.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-semibold transition"
           >
-            {loading ? "Loading..." : "Register"}
+            {loading ? "Registering..." : "Register"}
           </button>
+
         </form>
 
-        <p className="text-center mt-6 text-gray-600">
-          Already have account?{" "}
+        {/* Divider */}
+        <div className="divider text-gray-400 my-4">OR</div>
+
+        {/* Google Button */}
+        <button
+          onClick={handleGoogleRegister}
+          className="w-full py-2.5 rounded-xl border border-gray-300 flex items-center justify-center gap-3 hover:bg-gray-50 transition font-medium"
+        >
+          <FcGoogle size={22} />
+          {googleLoading ? "Please wait..." : "Continue with Google"}
+        </button>
+
+        {/* Login Link */}
+        <p className="text-center mt-4 text-gray-600 text-sm">
+          Already have an account?{" "}
           <Link
             href="/login"
             className="text-orange-500 font-semibold hover:underline"

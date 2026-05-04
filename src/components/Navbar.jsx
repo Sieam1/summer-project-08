@@ -111,7 +111,7 @@ export default function Navbar() {
               </span>
             </div>
 
-            {/* LOGOUT BUTTON */}
+            
             <button
               onClick={handleLogout}
               className="btn btn-sm bg-red-500 hover:bg-red-600 text-white border-none rounded-full px-5 transition-all active:scale-95"

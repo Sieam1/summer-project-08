@@ -77,7 +77,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Newsletter */}
+          
           <div>
             <h3 className="text-lg font-bold mb-6 relative inline-block">
               Newsletter

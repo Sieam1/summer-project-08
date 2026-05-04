@@ -37,7 +37,7 @@ export default function Navbar() {
         <Link href="/" className="flex items-center gap-2 group">
           <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-emerald-400">
             <Image
-              src="/logo/logo.jpg"
+              src="/logo/shoping.jpg"
               alt="logo"
               fill
               className="object-cover"
@@ -45,7 +45,7 @@ export default function Navbar() {
           </div>
 
           <span className="font-bold text-xl text-slate-800">
-            Summer <span className="text-emerald-500">Store</span>
+           Summer Essentials <span className="text-emerald-500">Store</span>
           </span>
         </Link>
       </div>

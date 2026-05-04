@@ -98,7 +98,7 @@ export default function Footer() {
 
         </div>
 
-        {/* Bottom Bar */}
+       
         <div className="mt-20 pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
           <p>© 2026 Summer Essentials Store. All Rights Reserved.</p>
           <div className="flex gap-8">

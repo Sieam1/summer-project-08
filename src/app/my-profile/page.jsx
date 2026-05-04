@@ -7,7 +7,7 @@ export default function MyProfile() {
   const user = {
     name: "Demo User",
     email: "demo@gmail.com",
-    photo: "https://i.ibb.co/4pDNDk1/avatar.png",
+    photo: "",
   };
 
   return (

@@ -26,7 +26,7 @@ export default function SummerGuide() {
             key={guide.id}
             className={`relative rounded-[2.5rem] overflow-hidden flex flex-col lg:flex-row items-center p-6 lg:p-12 gap-10 shadow-sm border border-slate-100 ${guide.bgColor}`}
           >
-            {/* LEFT CONTENT AREA */}
+           
             <div className="w-full lg:w-1/2 space-y-6 z-10">
               <span className="text-emerald-600 font-black text-xs uppercase tracking-[0.2em]">
                 {guide.subTitle}
